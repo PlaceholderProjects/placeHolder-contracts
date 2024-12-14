@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.23;
 
-import "forge-std/Script.sol";
 import "../src/PlaceHolderAds.sol";
+import "forge-std/Script.sol";
 
 contract DeployPlaceHolderAds is Script {
     function run() external {
@@ -22,15 +22,17 @@ contract DeployPlaceHolderAds is Script {
         vm.stopBroadcast();
     }
 
-    function addressToString(
-        address _addr
-    ) internal pure returns (string memory) {
+    function addressToString(address _addr)
+        internal
+        pure
+        returns (string memory)
+    {
         bytes20 value = bytes20(_addr);
         bytes16 hexAlphabet = "0123456789abcdef";
         bytes memory str = new bytes(42);
         str[0] = "0";
         str[1] = "x";
-        for (uint i = 0; i < 20; i++) {
+        for (uint256 i = 0; i < 20; i++) {
             str[2 + i * 2] = hexAlphabet[uint8(value[i] >> 4)];
             str[3 + i * 2] = hexAlphabet[uint8(value[i] & 0x0f)];
         }

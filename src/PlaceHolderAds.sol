@@ -53,19 +53,16 @@ contract PlaceHolderAds {
         require(ads[_adId].publisher == msg.sender, "Not ad owner");
         _;
     }
+
     modifier onlyIssuer() {
-        require(
-            msg.sender == 0x180c5f2aBF35442Fb4425A1edBF3B5faDFc2208D,
-            "Not issuer"
-        );
+        require(msg.sender == 0x180c5f2aBF35442Fb4425A1edBF3B5faDFc2208D, "Not issuer");
         _;
     }
 
-    function publishAd(
-        string calldata _imageIpfsUrl,
-        string calldata _name,
-        string calldata _text
-    ) external returns (uint256) {
+    function publishAd(string calldata _imageIpfsUrl, string calldata _name, string calldata _text)
+        external
+        returns (uint256)
+    {
         adCounter += 1;
         uint256 newAdId = adCounter;
 
@@ -83,9 +80,9 @@ contract PlaceHolderAds {
 
         emit AdPublished(
             msg.sender,
+            _imageIpfsUrl,
             _name,
             _text,
-            _imageIpfsUrl,
             block.timestamp,
             ads[newAdId].isActive,
             ads[newAdId].reputationScore
@@ -94,10 +91,7 @@ contract PlaceHolderAds {
         return newAdId;
     }
 
-    function updateReputationScore(
-        address _publisher,
-        uint256 _reputationScore
-    ) external onlyIssuer {
+    function updateReputationScore(address _publisher, uint256 _reputationScore) external onlyIssuer {
         uint256 _adId = getPublisherAds(_publisher)[0];
 
         ads[_adId].reputationScore = _reputationScore;
@@ -116,7 +110,7 @@ contract PlaceHolderAds {
     function toggleAdStatus(address _publisher) external onlyIssuer {
         uint256 _adId = getPublisherAds(_publisher)[0];
 
-        ads[_adId].isActive = false;
+        ads[_adId].isActive = !ads[_adId].isActive; // Toggle the boolean value
 
         emit AdStatusChanged(
             ads[_adId].publisher,
@@ -129,9 +123,7 @@ contract PlaceHolderAds {
         );
     }
 
-    function getAd(
-        uint256 _adId
-    )
+    function getAd(uint256 _adId)
         external
         view
         adExists(_adId)
@@ -145,19 +137,10 @@ contract PlaceHolderAds {
         )
     {
         Ad memory ad = ads[_adId];
-        return (
-            ad.publisher,
-            ad.imageIpfsUrl,
-            ad.name,
-            ad.text,
-            ad.timestamp,
-            ad.isActive
-        );
+        return (ad.publisher, ad.imageIpfsUrl, ad.name, ad.text, ad.timestamp, ad.isActive);
     }
 
-    function getPublisherAds(
-        address _publisher
-    ) public view returns (uint256[] memory) {
+    function getPublisherAds(address _publisher) public view returns (uint256[] memory) {
         return publisherAds[_publisher];
     }
 
