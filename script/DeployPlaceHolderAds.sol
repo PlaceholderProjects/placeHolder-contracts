@@ -14,19 +14,12 @@ contract DeployPlaceHolderAds is Script {
         console.log("Contract deployed at:", address(placeholderAds));
 
         // Write contract address to a file in the script directory
-        vm.writeFile(
-            "./script/contract-address.txt",
-            addressToString(address(placeholderAds))
-        );
+        vm.writeFile("./script/contract-address.txt", addressToString(address(placeholderAds)));
 
         vm.stopBroadcast();
     }
 
-    function addressToString(address _addr)
-        internal
-        pure
-        returns (string memory)
-    {
+    function addressToString(address _addr) internal pure returns (string memory) {
         bytes20 value = bytes20(_addr);
         bytes16 hexAlphabet = "0123456789abcdef";
         bytes memory str = new bytes(42);
