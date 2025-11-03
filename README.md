@@ -1,66 +1,38 @@
-## Foundry
+# A New Way to Keep Ads Honest
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**Placeholder** is an **On-Chain Attestation Reputation System** designed to bring honesty, safety, and transparency to the world of online advertising.
 
-Foundry consists of:
+---
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## The Problem with Traditional Advertising
 
-## Documentation
+In the old days, verifying the integrity of online ads was **extremely difficult**:
 
-https://book.getfoundry.sh/
+- **No Accountability:** Publishers could run malicious ads without consequence.
+- **Unsafe Experiences:** Ads containing malware, scams, or inappropriate content could appear just about anywhere.
+- **Untrustworthy Ecosystem:** Advertisers and publishers had little incentive to maintain high-quality standards.
 
-## Usage
+---
 
-### Build
+## Introducing Placeholder
 
-```shell
-$ forge build
-```
+Built on top of the **TrueNetwork Attestation Layer**, **Placeholder** empowers users—**that means you**—to have a direct say in what ads and publishers earn your trust.
 
-### Test
+### How It Works
 
-```shell
-$ forge test
-```
+1. **Community Votes:** You cast verifiable, on-chain votes rating the quality and trustworthiness of both advertisers and publishers.
+2. **Reputation Score Generation:** A cutting-edge Reputation Algorithm blends your votes with on-chain activity data to produce a dynamic, tamper-resistant Reputation Score.
+3. **Enforcement of Quality:** Ads and publishers with low Reputation Scores lose their placements, ensuring that only the most honest, reliable content gets through.
 
-### Format
+---
+## How Can You Use Placeholder?
 
-```shell
-$ forge fmt
-```
+**Publish Ads (No Gas):**  
+With Coinbase’s platform, anyone can publish on-chain ads without gas fees, lowering barriers and encouraging new participants. This is instantly displayed on our digital billboard powered by a raspberry pi and display. 
 
-### Gas Snapshots
+**Rate Ads:**  
+Use our Flutter app to rate ads. Your signed input goes to TrueNetwork’s Attestation Layer, applying Quadratic Voting principles to yield a fair Reputation Score.
 
-```shell
-$ forge snapshot
-```
+**Community Power:**  
+Your collective ratings filter out malicious ads, ensuring a safer, more transparent ecosystem. Placeholder lets users—not corporations—shape advertising standards.
 
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
